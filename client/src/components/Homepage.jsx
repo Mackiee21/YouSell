@@ -14,7 +14,7 @@ function Homepage() {
   return (
     !isAuthenticated ? 
       <div id='hero' className="min-h-svh grid grid-rows-12 grid-cols-5">
-        <HomeNavBar className="col-span-12 row-span-1 bg-teal-900 text-white flex items-center" />
+        <HomeNavBar />
         <div className="col-span-2 row-span-11 flex items-center justify-center">
            <div className="">
            <h1 className="text-[40px] font-extrabold"><span>YouSell</span><br />Sell and Earn</h1>

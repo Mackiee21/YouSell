@@ -1,8 +1,8 @@
 
 
-function HeroWrapper({ children, ...rest }) {
+function HeroWrapper({ children }) {
   return (
-    <div id="hero" className="min-h-svh" {...rest}>
+    <div id="hero" className="min-h-svh grid grid-cols-5 grid-rows-12">
       {children}
     </div>
   )

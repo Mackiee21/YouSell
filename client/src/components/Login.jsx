@@ -56,9 +56,10 @@ function Login({ sesExpired }) {
               </div>
               <div className="flex flex-col justify-center gap-2">
                   <label className="font-black text-base text-teal-900 tracking-wide">Password</label>
-                  <input type="password" name="password" value={loginForm.password} onChange={handleChange} className="" />
+                  <input type="password" name="password" value={loginForm.password} onChange={handleChange} className="font-black" />
               </div>
               <button type="submit" className='bg-teal-900 mt-2 hover:opacity-85 py-2.5 rounded font-bold text-white'>Login</button>
+              <p>Don't have an account? Sign up <a href="/signup" className='text-blue-600 underline cursor-pointer'>here.</a></p>
             </form>
         </div>
         </div>

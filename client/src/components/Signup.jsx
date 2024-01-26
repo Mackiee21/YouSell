@@ -5,7 +5,9 @@ function Signup() {
   return (
     <HeroWrapper>
         <HomeNavBar />
-      Hello
+     <h2 className="row-span-11">
+      Meoww
+     </h2>
     </HeroWrapper>
   )
 }

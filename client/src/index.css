@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&family=Raleway:wght@200;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nosifer&family=Raleway:wght@200;400;500;600&family=Saira+Extra+Condensed:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Raleway:wght@400;500&family=Russo+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html{
+    @apply scroll-smooth;
+}
+body{
+    font-family: 'Raleway', 'sans-serif';
+}
+#hero{
+    background-image: url('https://goodlifefamilymag.com/wp-content/uploads/2018/08/Stack-of-colorful-books.-Education-background.-Back-to-school.-Book-hardback-colorful-books-on-wooden-table.-Education-business-concept.-Copy-space-for-text-700268816_3877x2585-1920x1280.jpeg');
+    @apply bg-cover bg-center;
+}
+
+.logo{
+    font-family: 'Bebas Neue', sans-serif;
+}

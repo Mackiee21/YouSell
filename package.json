@@ -1,0 +1,27 @@
+{
+  "name": "login-auth-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:client": "npm run dev --prefix client",
+    "start:dev": "nodemon ./src/index.mjs",
+    "start-all": "concurrently npm:start:*",
+    "start": "node ./src/index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "path": "^0.12.7"
+  },
+  "type": "module",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

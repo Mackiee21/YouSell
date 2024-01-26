@@ -30,7 +30,7 @@ app.get('/api', (req, res) => {
     return res.send("meoww");
 })
 //CAT ALL NOT FOUND ROUTES Redirect to NOT FOUND PAGE
-app.use((req, res, next) => {
+app.use("/api", (req, res, next) => {
     res.status(404).sendFile(path.join(__dirname, 'NotFound.html'));
 })
 

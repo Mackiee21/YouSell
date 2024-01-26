@@ -17,7 +17,7 @@ const app = express();
 //middlewares
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "client", "dist")));
+app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(loginRouter);
 
 app.use(cookieParser());

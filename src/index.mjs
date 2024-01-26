@@ -33,10 +33,10 @@ app.get('/api', (req, res) => {
 app.get("*", (_, res) => {
     res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 })
-//CAT ALL NOT FOUND ROUTES Redirect to NOT FOUND PAGE
-app.use((req, res, next) => {
-    res.status(404).sendFile(path.join(__dirname, 'NotFound.html'));
-})
+// //CAT ALL NOT FOUND ROUTES Redirect to NOT FOUND PAGE
+// app.use((req, res, next) => {
+//     res.status(404).sendFile(path.join(__dirname, 'NotFound.html'));
+// })
 const PORT = process.env.PORT || 5000;
 
 

@@ -6,6 +6,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import { useState } from "react";
 import Profile from "./components/Profile";
 import Signup from "./components/Signup";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [sesExpired, setSesExpired] = useState(false);
@@ -18,6 +19,7 @@ function App() {
         <Route element={<ProtectedRoutes sesExpired={sesExpired} setSesExpired={setSesExpired} />}>
             <Route path="/profile" element={<Profile />} />
         </Route>
+        <Route path="*"  element={<NotFound />}/>
       </Routes>
     </div>
   )

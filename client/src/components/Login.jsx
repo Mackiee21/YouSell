@@ -45,11 +45,11 @@ function Login({ sesExpired }) {
   return (
     <div id='hero' className="min-h-svh grid grid-rows-12 grid-cols-5">
         <HomeNavBar className="col-span-12 row-span-1 bg-teal-900 text-white flex items-center" />
-        <div className="col-span-2 row-span-11 flex flex-col items-center justify-center">
+        <div className="col-span-5 md:col-span-3 lg:col-span-2 row-span-11 flex flex-col items-center justify-center">
           <h3 className='logo header-logo'>Login - YouSell</h3>
-          <div className="flex flex-col items-center justify-center py-5">
-            {sesExpired && <div className='mb-3 bg-zinc-300 w-96 text-center py-3 font-bold'>Session Expired. You have been logged out!</div> }
-            <form onSubmit={SubmitLogin} className="flex flex-col gap-3 w-96 py-7 px-7 rounded border-2 border-teal-900">
+          <div className="grid grid-cols-1 items-center justify-center py-5 px-5 md:px-0">
+            {sesExpired && <div className='mb-3 bg-zinc-300 md:w-96 text-center py-3 font-bold'>Session Expired. You have been logged out!</div> }
+            <form onSubmit={SubmitLogin} className="flex flex-col gap-3 md:w-96 py-7 px-7 rounded border-2 border-teal-900">
               <div className='flex flex-col justify-center gap-1'>
                   <label className="font-black text-base text-teal-900 tracking-wide">Username</label>
                   <input type="text" name="username" value={loginForm.username} onChange={handleChange} className="" />

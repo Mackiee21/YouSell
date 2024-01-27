@@ -66,7 +66,7 @@ function Signup() {
             </div>
             {/* TOP RIGHT SIDE OF THE FORM */}
             <div className="col-span-1">
-              <Fieldset legend="Are you a UC student?" className="md:p-3 grid grid-cols-1 gap-4 md:gap-7">
+              <Fieldset legend="Are you a UC student?" className="md:p-3 grid grid-cols-1 gap-[1.30rem] md:gap-7">
                 <div className="flex gap-5">
                     <div className="flex gap-2 items-center cursor-pointer">
                       <label htmlFor="yes" className="order-2 text-teal-900 font-semibold">Yes</label>

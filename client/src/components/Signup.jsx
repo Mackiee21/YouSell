@@ -44,7 +44,7 @@ function Signup() {
   return (
     <HeroWrapper>
         <HomeNavBar className="py-2.5 sticky top-0" text={isH1Visible ? null : "Register - YouSell"} />
-     <div className="row-span-11 col-span-3 flex flex-col items-center gap-5 my-10">
+     <div className="row-span-11 col-span-3 flex flex-col items-center gap-10 md:gap-5 my-10">
       <h1 ref={h1Ref} className="logo header-logo">Signup - YouSell</h1>
       <form className="signup-form max-w-[900px] w-[90%] md:w-[75%] lg:w-[60%] box-border md:shadow-2xl md:shadow-teal-900 rounded-lg md:p-5">
         <Fieldset legend="Personal Information">

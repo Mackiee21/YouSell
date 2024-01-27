@@ -63,7 +63,7 @@ function Login({ sesExpired }) {
             </form>
         </div>
         </div>
-      <div className="col-span-3">
+      <div className="col-span-0 md:col-span-3">
       </div>
   </div>
   )

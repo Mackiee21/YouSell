@@ -8,6 +8,7 @@ function Signup() {
   const [isAStudent, setIsAStudent] = useState(true);
   const [whoseChecked, setWhoseChecked] = useState("yes");
   const [isH1Visible, setIsH1Visible] = useState(true);
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const h1Ref = useRef(null);
 
   const handleIsAStudentChange = (e) => {
@@ -32,6 +33,9 @@ function Signup() {
     }
  }
 
+ const handleAccepted = () => {
+  setTermsAccepted(!termsAccepted);
+ }
  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => document.removeEventListener("scroll", handleScroll)
@@ -40,9 +44,9 @@ function Signup() {
   return (
     <HeroWrapper>
         <HomeNavBar className="py-2.5 sticky top-0" text={isH1Visible ? null : "Register - YouSell"} />
-     <div className="row-span-11 col-span-3 flex flex-col items-center gap-5 mt-10">
+     <div className="row-span-11 col-span-3 flex flex-col items-center gap-5 my-10">
       <h1 ref={h1Ref} className="logo header-logo">Signup - YouSell</h1>
-      <form className="signup-form max-w-[900px] w-[700px] shadow-2xl shadow-teal-900 rounded-lg p-5">
+      <form className="signup-form max-w-[900px] w-[750px] shadow-2xl shadow-teal-900 rounded-lg p-5">
         {/* TOP LEFT SIDE OF THE FORM */}
         <Fieldset legend="Personal Information">
           <div className="flex gap-10 box-border">
@@ -62,7 +66,7 @@ function Signup() {
             </div>
             {/* TOP RIGHT SIDE OF THE FORM */}
             <div className="flex flex-col gap-8 w-1/2">
-              <Fieldset legend="Are you a UC student?" className="p-3">
+              <Fieldset legend="Are you a UC student?" className="p-3 flex flex-col gap-7">
                 <div className="flex gap-5">
                     <div className="flex gap-2 items-center cursor-pointer">
                       <label htmlFor="yes" className="order-2 text-teal-900 font-semibold">Yes</label>
@@ -73,32 +77,59 @@ function Signup() {
                       <input onChange={handleIsAStudentChange} id="no" value="no" className="order-1 h-4 w-4" type="radio" name="choice" checked={whoseChecked !== "yes" ? true : false} />
                     </div>
                 </div>
+                 {/*IF A UC STUDENT */}
+                  { isAStudent  && 
+                      <div className="flex flex-col gap-5">
+                          <div className="input-wrapper flex flex-col gap-2">
+                            <label>Course</label>
+                            <input type="text" />
+                          </div>
+                          <div className="input-wrapper flex flex-col gap-2">
+                            <label>Year</label>
+                            <input type="text" />
+                          </div>
+                      </div>
+                  }
               </Fieldset>
-              {/*IF A UC STUDENT */}
-              { isAStudent  && 
-                  <div>
-                      <div className="input-wrapper flex flex-col gap-2">
-                        <label>Course</label>
-                        <input type="text" />
-                      </div>
-                      <div className="input-wrapper flex flex-col gap-2">
-                        <label>Year</label>
-                        <input type="text" />
-                      </div>
-                  </div>
-              }
               </div>
             </div> {/* END OF TOP SIDE OF THE FORM */}
           </Fieldset>
 
         {/*ADDRESS PART */}
        <Fieldset legend="Address" className="mt-10">
-           <div>
-            hello
-           </div>
+           <div className="box-border grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-8">
+              <div className="input-wrapper flex flex-col gap-2">
+                  <label>Province</label>
+                  <input type="text" />
+              </div>
+              <div className="input-wrapper flex flex-col gap-2">
+                      <label>City</label>
+                      <input type="text" />
+              </div>
+              <div className="input-wrapper flex flex-col gap-2">
+                  <label>Barangay</label>
+                  <input type="text" />
+              </div>
+              <div className="input-wrapper flex flex-col gap-2">
+                  <label>Street</label>
+                  <input type="text" />
+              </div>
+              <div className="input-wrapper flex flex-col gap-2">
+                  <label>Zip / Postal Code</label>
+                  <input type="text" />
+              </div>
+            </div>
        </Fieldset>
         {/*END OF ADDRESS PART */}
-        <button className="bg-teal-900 hover:opacity-85 py-2.5 rounded font-bold text-white w-full mt-7">Submit</button>
+        <div className="flex gap-2 mt-7">
+          <input type="checkbox" onChange={handleAccepted} checked={termsAccepted} />
+          <p className="-mt-1">
+            I hereby acknowledge that by using this website, I agree to 
+            abide by and comply with all the terms and conditions set forth in the terms 
+            of service, privacy policy, and any other applicable agreements or guidelines.
+          </p>
+        </div>
+        <button disabled={!termsAccepted} className={`${termsAccepted ? "cursor-pointer hover:opacity-85": "cursor-not-allowed"} bg-teal-900 py-2.5 rounded font-bold text-white w-full mt-10`}>Submit</button>
       </form>
      </div>
      <div className="col-span-2"></div>

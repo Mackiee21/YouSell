@@ -16,6 +16,10 @@ body{
     background-image: url('https://goodlifefamilymag.com/wp-content/uploads/2018/08/Stack-of-colorful-books.-Education-background.-Back-to-school.-Book-hardback-colorful-books-on-wooden-table.-Education-business-concept.-Copy-space-for-text-700268816_3877x2585-1920x1280.jpeg');
     @apply bg-cover bg-center;
 }
+#hero-wrapper{
+    background-image: url("./assets/form-background.jpg");
+    @apply bg-cover bg-center;
+}
 .logo{
     font-family: 'Bebas Neue', sans-serif;
 }
@@ -24,7 +28,7 @@ body{
 }
 
 .signup-form{
-    background-image: url('./assets/form-background.jpg');
+    background-image: url("./assets/form-background.jpg");
     @apply bg-cover bg-center;
 }
 .input-wrapper > label{

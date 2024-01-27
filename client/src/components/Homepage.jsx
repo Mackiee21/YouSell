@@ -13,7 +13,7 @@ function Homepage() {
   }, [])
   return (
     !isAuthenticated ? 
-      <div id='hero' className="min-h-svh grid grid-rows-12 grid-cols-5">
+      <div id='hero' className="min-h-dvh grid grid-rows-12 grid-cols-5">
         <HomeNavBar />
         <div className="col-span-2 row-span-11 flex items-center justify-center">
            <div className="">

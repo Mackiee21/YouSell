@@ -46,7 +46,7 @@ function Signup() {
         <HomeNavBar className="py-2.5 sticky top-0" text={isH1Visible ? null : "Register - YouSell"} />
      <div className="row-span-11 col-span-3 flex flex-col items-center gap-5 my-10">
       <h1 ref={h1Ref} className="logo header-logo">Signup - YouSell</h1>
-      <form className="signup-form max-w-[900px] w-[90%] md:w-[75%] lg:w-[60%] box-border shadow-2xl shadow-teal-900 rounded-lg p-5">
+      <form className="signup-form max-w-[900px] w-[90%] md:w-[75%] lg:w-[60%] box-border md:shadow-2xl md:shadow-teal-900 rounded-lg md:p-5">
         <Fieldset legend="Personal Information">
           <div className="grid grid-cols-1 gap-7 md:grid-cols-2 md:gap-8 lg:gap-10">
             {/* TOP LEFT SIDE OF THE FORM */}
@@ -66,7 +66,7 @@ function Signup() {
             </div>
             {/* TOP RIGHT SIDE OF THE FORM */}
             <div className="col-span-1">
-              <Fieldset legend="Are you a UC student?" className="p-3 grid grid-cols-1 gap-4 md:gap-7">
+              <Fieldset legend="Are you a UC student?" className="md:p-3 grid grid-cols-1 gap-4 md:gap-7">
                 <div className="flex gap-5">
                     <div className="flex gap-2 items-center cursor-pointer">
                       <label htmlFor="yes" className="order-2 text-teal-900 font-semibold">Yes</label>

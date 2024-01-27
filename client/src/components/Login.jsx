@@ -43,7 +43,7 @@ function Login({ sesExpired }) {
   }
 
   return (
-    <div id='hero' className="min-h-svh grid grid-rows-12 grid-cols-5">
+    <div id='hero' className="min-h-dvh grid grid-rows-12 grid-cols-5">
         <HomeNavBar className="col-span-12 row-span-1 bg-teal-900 text-white flex items-center" />
         <div className="col-span-5 md:col-span-3 lg:col-span-2 row-span-11 flex flex-col items-center justify-center">
           <h3 className='logo header-logo'>Login - YouSell</h3>

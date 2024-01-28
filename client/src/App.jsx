@@ -1,24 +1,24 @@
 import Login from "./components/Login";
-import Homepage from "./components/Homepage";
-import axios from 'axios';
 import { Routes, Route} from 'react-router-dom';
-import ProtectedRoutes from "./components/ProtectedRoutes";
-import { useState } from "react";
-import Profile from "./components/Profile";
 import Signup from "./components/Signup";
 import NotFound from "./components/NotFound";
+import AuthLayout from "./_auth/AuthLayout";
+import Home from "./_root/Home";
+import RootLayout from "./_root/RootLayout";
 
 function App() {
-  const [sesExpired, setSesExpired] = useState(false);
   return (
     <div className="">
       <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<Login sesExpired={sesExpired} />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route element={<ProtectedRoutes sesExpired={sesExpired} setSesExpired={setSesExpired} />}>
-            <Route path="/profile" element={<Profile />} />
+        {/*PUBLIC ROUTES */}
+        <Route element={<AuthLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<Signup />} />
         </Route>
+        {/*PRIVATE ROUTES */}
+          <Route element={<RootLayout />}>
+            <Route index element={<Home />} />
+          </Route>
         <Route path="*"  element={<NotFound />}/>
       </Routes>
     </div>

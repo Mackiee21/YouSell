@@ -6,6 +6,7 @@ import { dirname } from "path";
 import cookieParser from 'cookie-parser';
 import loginRouter from "./routes/login.mjs";
 import { validateUser }  from './customMiddlewares/authenticatedUser.mjs';
+import signupRouter from "./routes/signup.mjs";
 
 
 
@@ -19,10 +20,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use(loginRouter);
+app.use(signupRouter)
 
 app.use(cookieParser());
 
-//app.use(validateUser); //applicable to other routes only not on loginRoute
+app.use(validateUser); //applicable to other routes only not on loginRoute
 
 app.get('/api', (req, res) => {
     //if passed the middleware meaning the user is already logged in

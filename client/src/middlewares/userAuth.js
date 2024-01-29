@@ -1,5 +1,5 @@
 //check if user is authenticated
-export const isUserAuthenticated = () => {
+export  const isUserAuthenticated = () => {
     //do something here like
     //check hte document.cookie if present ang particular na cookie like (mypokiee is present);
     //if so, then set the loggedIn to true

@@ -41,7 +41,7 @@ function Signup() {
 
   return (
     <>
-     <div className="w-full flex items-center signup-form rounded-2xl p-10 gap-10">
+     <div className="w-full flex items-center signup-form rounded-2xl p-10 gap-10 border border-teal-900">
       <div className="w-[70%]">
         <h1 ref={h1Ref} className="logo header-logo text-center">Signup - YouSell</h1>
         <form className="box-border mt-5 md:p-5">

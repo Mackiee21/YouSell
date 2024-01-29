@@ -1,0 +1,58 @@
+#React Hook Form
+    -> npm i react-hook-Form
+    -> npm i zod
+    -> npm i @hookform/resolvers
+
+    #steps
+    1. import the three packages into your jsx/tsx file
+         import * as z from 'zod';
+        imporrt { useForm } from 'react-hook-form'
+        import 
+
+    2. Use them
+        const { register } = useForm()
+
+        JUST REMEMBER THIS MAK
+        formState, handleSubmit, register, zodResolver, schema
+
+
+        for ZOD  (LINK: https://zod.dev/?id=superrefine)
+            custom error for multiple error message in one field
+                -> use superRefine((val, ctx) => {
+                    if(condition){
+                        ctx.addIssue({
+                            code: z.ZodIssueCode.custom,
+                            message: "your error message",
+                            fatal: true, //if you want to abort the validation from proceeding to the next 
+                            //refinements
+
+                        })
+                    }
+                })
+
+    OR YOU CAN USE min(1,{}).min(8{})
+
+    ZOD COMPLETE STEPS (with: REACT HOOK FORM)
+        1. import * as z from 'zod'
+        2. import { zodResolver } from '@hookform/resolvers/zod'
+        3. import { useForm } from 'react-hook-form'
+
+
+        const formSchema = z.object({
+            username: z.string().min(1, {message: "This field is required"}),
+            password: z.string()
+        })
+
+        const { register, handleSubmit, formState: {errors, isSubmitting } } = useForm({
+            resolver: zodResolver(formSchema);
+        })
+
+        const sumbitForm = (data) => {}
+
+        <form onSubmit={handleSubmit(sumbitForm)}> </form>
+        <input {...register("username")} />
+        
+        ...
+        ..
+        .
+        AND SO ON...

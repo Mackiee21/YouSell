@@ -47,3 +47,7 @@ body{
     /*@apply shadow-[inset_0_0_3.5px_0_gray] transition-all duration-200 focus:shadow-none;
 }
 */
+
+.auth-form-container{
+    @apply flex flex-col items-center justify-center w-[35%];
+}

@@ -2,33 +2,32 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { deleteCookie } from '../usableFunc/deleteCookiie';
 import { Link } from 'react-router-dom';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 
-
-function Login({ sesExpired }) {
-  const [loginForm, setLoginForm] = useState({
-    username: "",
-    password: ""
-  });
-  
+function Login() {
+  const [incorrectCredentials, setIncorrectCredentials] = useState(false);
   useEffect(() => {
     deleteCookie('mypokie');
     localStorage.removeItem('mypokie')
   }, [])//logs out user if manually accessed the / route or login page route
 
+  //FORM SCHEMA
+  const formSchema = z.object({
+    username: z.string().min(1, {message: "This is a required field"}),
+    password: z.string().min(1, {message: "This is a required field"})
+  })
+  const { register, handleSubmit, formState: {errors, isSubmitting} } = useForm({
+    resolver: zodResolver(formSchema)
+  });
 
-  const handleChange = (e) => {
-    setLoginForm(prev => {
-      return {...prev, [e.target.name]: e.target.value}
-    })
-  }
-
-  const SubmitLogin = async (e) => {
-    e.preventDefault();
-
-    const response = await axios.post('/api/login', loginForm);
+  const SubmitLogin = async (data) => {
+    console.log(data)
+    const response = await axios.post('/api/login', data);
     if(response.data.msg){
-      alert("invalid credentials");
+      setIncorrectCredentials(true);
     }
     else{
       console.log('hello', response);
@@ -43,23 +42,24 @@ function Login({ sesExpired }) {
   }
 
   return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="auth-form-container">
           <h1 className='logo header-logo'>WELCOME BACK - Yousell</h1>
-          <div className='w-full text-center mt-3 gap-1'>
-            <h2 className='text-base font-semibold text-teal-900'>Enter you login credentials</h2>
-          </div>
-          <div className="grid grid-cols-1 items-center justify-center py-5 px-5 md:px-0">
-            <form onSubmit={SubmitLogin} className="flex flex-col gap-3 md:w-96 py-7 px-7 rounded border-2 border-teal-900">
+          <h2 className='text-lg logo tracking-wide font-medium text-teal-900 my-3'>Enter you login credentials</h2>
+          <div className="w-full grid grid-cols-1 items-center justify-center rounded border border-teal-900 md:px-0">
+            <div className={`w-full bg-red-700 tracking-wide text-white text-sm font-medium text-center rounded-b-sm py-3.5 ${!incorrectCredentials && 'hidden'}`}>Incorrect email or password</div>
+            <form onSubmit={handleSubmit(SubmitLogin)} className="flex flex-col gap-3.5 w-full p-7">
               <div className='input-wrapper flex flex-col justify-center gap-1'>
-                  <label className="font-black text-base text-teal-900 tracking-wide">Username</label>
-                  <input type="text" name="username" value={loginForm.username} onChange={handleChange} className="" />
+                  <label className="text-sm font-medium text-teal-900">Username</label>
+                  <input {...register("username")} type="email" className='h-9 text-sm font-medium' />
+                  {errors.username && (<div className='text-red-500 text-[15px] font-medium'>{errors.username.message}</div>)}
               </div>
-              <div className="input-wrapper flex flex-col justify-center gap-2">
-                  <label className="font-black text-base text-teal-900 tracking-wide">Password</label>
-                  <input type="password" name="password" value={loginForm.password} onChange={handleChange} className="font-black" />
+              <div className="input-wrapper flex flex-col justify-center gap-1">
+                  <label className="text-sm font-medium text-teal-900">Password</label>
+                  <input {...register("password")} type="password" className="font-black h-9" />
+                  {errors.password && (<div className='text-red-500 text-[15px] font-medium'>{errors.password.message}</div>)}
               </div>
-              <button type="submit" className='bg-teal-900 mt-2 hover:opacity-85 py-2.5 rounded font-bold text-white'>Login</button>
-              <p>Don't have an account?<Link to="/sign-up" className='text-teal-900 font-bold cursor-pointer ms-1'>Sign up</Link></p>
+              <button disabled={isSubmitting} type="submit" className='bg-teal-900 mt-2 hover:opacity-85 h-9 rounded text-sm font-medium text-white'>{isSubmitting ? "Loading..." : 'Login'}</button>
+              <p className='text-base'>Don't have an account?<Link to="/sign-up" className='text-teal-900 font-bold cursor-pointer ms-1'>Sign up</Link></p>
             </form>
           </div>
         </div>

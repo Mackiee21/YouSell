@@ -1,8 +1,8 @@
 import Login from "./components/Login";
 import { Routes, Route} from 'react-router-dom';
-import Signup from "./components/Signup";
 import NotFound from "./components/NotFound";
 import AuthLayout from "./_auth/AuthLayout";
+import Signup from "./_auth/forms/Signup";
 import Home from "./_root/Home";
 import RootLayout from "./_root/RootLayout";
 

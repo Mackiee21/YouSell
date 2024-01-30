@@ -1,15 +1,38 @@
-import { createContext, useEffect, useState, useContext } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { isUserAuthenticated } from '../middlewares/userAuth';
+import axios from 'axios';
+import { createContext, useEffect, useContext, useReducer } from 'react'
 
 const AuthContext = createContext();
 
-function AuthProvider({ children }) {
-    const isAuthenticated = isUserAuthenticated();
-   const [user, setUser] = useState(isAuthenticated ? "mark": null);
+const authReducer = (state, action) => {
+  switch(action.type){
+    case "LOGIN":
+      console.log("dispatched")
+      return { user: action.payload }
+    case "LOGOUT":
+      return { user: null }
+
+    default: return state
+  }
+}
+ function AuthProvider({ children }) {
+  const [state, dispatch] = useReducer(authReducer, {
+    user: document.cookie ? document.cookie.split("=")[0] : null
+  })
+
+async function checkStatus(){
+    try {
+      const response = await axios.get('/api/auth/status');
+      if(response.data?.user){
+        dispatch({type: "LOGIN", payload: response.data.user})
+      }
+    } catch (error) {
+      console.log(error)
+    }
+}
+
   return (
-    <AuthContext.Provider value={{ user }}>
-        {children}
+    <AuthContext.Provider value={{ ...state, dispatch, checkStatus }}>
+        { children }
     </AuthContext.Provider>
   )
 }

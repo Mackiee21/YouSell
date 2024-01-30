@@ -9,9 +9,6 @@ import AuthProvider from './context/AuthContext'
 
 const root = ReactDOM.createRoot(el);
 
-axios.interceptors.response.use(response => response, error => {
-  console.log(error)
-})
 root.render(
   <BrowserRouter>
     <AuthProvider>

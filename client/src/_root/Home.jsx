@@ -1,3 +1,4 @@
+import { useUserContext } from "../context/AuthContext"
 
 function Home() {
   return (

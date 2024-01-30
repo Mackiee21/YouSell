@@ -1,15 +1,18 @@
-import router from 'express';
+import router, { response } from 'express';
+import passport from 'passport';
+import { User } from '../Schemas/UserSchema.mjs'
 
 const loginRouter = router();
 
-loginRouter.post('/api/login', (req, res) => {
-    const {body: {username, password}} = req;
-    if(username === "pandacmark21@gmail.com" && password === "Pandac_21"){
-        res.cookie("mypokie", "isyourstoeat", {maxAge: 1000 * 60});
-
-        return res.status(201).json({redirectTo: "/", cookieMo: "mypokie"});
+loginRouter.post('/api/login', passport.authenticate("local"), async (req, res) => {
+    const newUser = new User(req.body);
+    try {
+        const savedUser = await newUser.save();
+        return res.status(200).cookie("user", savedUser.username).json({redirectTo: "/", user: savedUser});
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({error: error})
     }
-    return res.json({msg: "Email or password is incorrect"});
 })
 
 export default loginRouter;

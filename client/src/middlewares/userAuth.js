@@ -5,15 +5,14 @@ export  const isUserAuthenticated = () => {
     //if so, then set the loggedIn to true
     
     //console.log(document.cookie); //this would return like mypokiee=isyourstoit; cookie2=value2; ....
-    let isLoggedIn = false;
-    const userCookie = document.cookie ?? null;
-    if(!userCookie && localStorage.getItem("mypokie") !== null) {
-        localStorage.removeItem("mypokie");
-        return false; //just for displaying the error purposes hahahahh
-        //returns true so that the session expired message would be shown
-        //please make sure to return false since cookie has expired so isLoggedIn should be false. Thank you
-    }
-    if(userCookie) isLoggedIn = true;
-   return isLoggedIn;
+    console.log(document.cookie.includes("connect.sid"));
+    console.log(document.cookie)
+    return document.cookie.includes("connect.sid");
+    // if(!userCookie && localStorage.getItem("mypokie") !== null) {
+    //     localStorage.removeItem("mypokie");
+    //     return false; //just for displaying the error purposes hahahahh
+    //     //returns true so that the session expired message would be shown
+    //     //please make sure to return false since cookie has expired so isLoggedIn should be false. Thank you
+    // }
 
 }

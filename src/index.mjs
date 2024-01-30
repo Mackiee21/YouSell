@@ -55,8 +55,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.get("/", (req, res) => {
-    if(!req.user || req.cookies && !req.cookies.user){
-
+    if(!req.user || !req.cookies.user){
         return res.clearCookie("user").status(401).redirect("/login")
     }
     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
@@ -77,16 +76,16 @@ app.get('/api/auth/status', (req, res) => {
 })
 
 //if session expired
-app.use((req, res, next) => {
-    console.log("hello matawag ko?")
-    const { session: { passport } } = req;
-    if(!passport?.user){
-        return res.clearCookie("user")
-    }
-    else{
-        next();
-    }
-})
+//nakalimot ka sa imong buhatonon mak, pero do soemthing here mak
+//na mag authenticate sa user 
+// app.use((req, res, next) => {
+//     console.log("hello matawag ko?")
+//     const { session: { passport } } = req;
+//     if(!passport?.user || !req.cookies.user){
+//         return res.clearCookie("user").status(401).end()
+//     }
+//     next();
+// })
 
 app.get("*", (_, res) => {
     console.log("hello?")

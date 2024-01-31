@@ -1,18 +1,31 @@
 import router, { response } from 'express';
 import passport from 'passport';
-import { User } from '../Schemas/UserSchema.mjs'
 
 const loginRouter = router();
 
-loginRouter.post('/api/login', passport.authenticate("local"), async (req, res) => {
-    const newUser = new User(req.body);
-    try {
-        const savedUser = await newUser.save();
-        return res.status(200).cookie("user", savedUser.username).json({redirectTo: "/", user: savedUser});
-    } catch (error) {
-        console.log(error)
-        return res.status(500).json({error: error})
-    }
-})
+loginRouter.post('/api/login', (req, res, next) => {
+    passport.authenticate("local", (err, user) => {
+        //IF done was called with done(error, null)
+        //THEN YOU NEED TO USE HERE BELOW THE err.message
+        if (err) {
+            console.log("Error", err);
+            return res.status(400).json({ error: err });
+        }
+        if (!user) {
+            // If authentication failed (user is not found or password is incorrect), respond accordingly
+            return res.status(400).json({ error: "Invalid credentials" });
+        }
+        // Authentication successful, call req.login() to establish a login session
+        req.login(user, (err) => {
+            if (err) {
+                console.log("Error", err);
+                return res.status(500).json({ error: "Internal server error, Try again!" });
+            }
+            // Once login session is established, set the user cookie and respond to the client
+            return res.status(200).cookie("user", user.username).json({ redirectTo: "/", user: user });
+        });
+    })(req, res, next); // Invoke passport.authenticate() as middleware
+});
+
 
 export default loginRouter;

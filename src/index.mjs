@@ -13,16 +13,6 @@ import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
 
-const ConnectDB = async () => {
-   try {
-    await mongoose.connect("mongodb+srv://mackiee21:hmWDj54mM657g7wa@cluster0.imwqxua.mongodb.net/yousell?retryWrites=true&w=majority");
-    console.log("connected to database")
-   } catch (error) {
-    console.log("Error Mackiee", error);
-    process.exit(1)
-   }
-
-}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -33,6 +23,7 @@ mongoose.connect("mongodb+srv://mackiee21:hmWDj54mM657g7wa@cluster0.imwqxua.mong
     console.log("connected to database")
 }).catch((err) => {
     console.log("Error", err)
+    process.exit(1)
 })
 
 //middlewares
@@ -54,6 +45,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
+
 app.get("/", (req, res) => {
     if(!req.user || !req.cookies.user){
         return res.clearCookie("user").status(401).redirect("/login")
@@ -61,7 +55,22 @@ app.get("/", (req, res) => {
     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
     
 })
+
 app.use(express.static(path.join(__dirname, '../client/dist')))
+
+//if session expired
+// nakalimot ka sa imong buhatonon mak, pero do soemthing here mak
+// na mag authenticate sa user 
+//APPLY THIS MAK TO ONLY PROCTECTED ROUTES
+// app.use((req, res, next) => {
+//     console.log("hello matawag ko?")
+//     const { session: { passport } } = req;
+//     if(!passport?.user || !req.cookies.user){
+//         return res.clearCookie("user").redirect("/login")
+//     }
+//     next();
+// })
+
 
 app.use(loginRouter);
 app.use(signupRouter)
@@ -74,18 +83,6 @@ app.get('/api/auth/status', (req, res) => {
     }
     return res.json({user: req.user});
 })
-
-//if session expired
-//nakalimot ka sa imong buhatonon mak, pero do soemthing here mak
-//na mag authenticate sa user 
-// app.use((req, res, next) => {
-//     console.log("hello matawag ko?")
-//     const { session: { passport } } = req;
-//     if(!passport?.user || !req.cookies.user){
-//         return res.clearCookie("user").status(401).end()
-//     }
-//     next();
-// })
 
 app.get("*", (_, res) => {
     console.log("hello?")

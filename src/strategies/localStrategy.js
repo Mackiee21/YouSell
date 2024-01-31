@@ -1,35 +1,36 @@
 import passport from 'passport';
 import { Strategy } from 'passport-local'
+import { User } from '../Schemas/UserSchema.mjs';
 
 passport.serializeUser((user, done) => {
-    console.log(`FROM SERIALIZER ${user.username}`)
-    done(null, user.username);
+    done(null, user._id);
 })
 
-passport.deserializeUser((username, done) => {
-    console.log(`FROM DESERIALIZER ${username}`)
+passport.deserializeUser(async (_id, done) => { //PURPOSE ANI NIYA IS E CHECK NIYANG 
+    //DATA NA STORED SA SESSION (ID) THEN FETCH SA DATABASE THEN E STORE NIYANG WHOLE DATA SA USER
+    // SA REQ.USER NA PROPERTY
     try {
-        if(username === "mackiee"){
-            done(null, {username: "mackiee", password: "Pandac_21"})
-        }else{
-            throw new Error("Invalid credentials")
+        const user = await User.findOne({_id});
+        if(!user){
+            done(new Error("Invalid Credentials"), null)
         }
+        done(null, user)
     } catch (error) {
         console.log('error', error)
          done(error, null)
     }
 })
 
-export default passport.use(new Strategy((username, password, done) => {
+export default passport.use(new Strategy(async (username, password, done) => {
     try {
-        if(username === "mackiee" && password === "Pandac_21"){
-            const user = {username, name: "Mark"}
-            console.log('from middleware', user)
-            done(null, user)
-        }else{
-            throw new Error("Invalid credentials")
-        }
+       const user = await User.findOne({ username });
+       if(!user) throw new Error("Incorrect email or password")
+       if(user.password !== password){
+        throw new Error("Incorrect email or password")
+        //OR DO LIKE THIS done(null, false, {message: "Invalid Password"})
+       }
+       done(null, user)
     } catch (error) {
-        done(error, null)
+        done(error.message, null) 
     }
 }))

@@ -51,7 +51,7 @@ function Login() {
                   <input {...register("password")} type="password" className="font-black h-9" />
                   {errors.password && (<div className='text-red-500 text-[15px] font-medium'>{errors.password.message}</div>)}
               </div>
-              <button disabled={isSubmitting} type="submit" className='bg-teal-900 mt-2 hover:opacity-85 h-9 rounded text-sm font-medium text-white'>{isSubmitting ? "Loading..." : 'Login'}</button>
+              <button disabled={isSubmitting} type="submit" className='bg-teal-900 mt-2 hover:opacity-85 h-9 rounded text-sm font-medium text-white'>{isSubmitting ? "Authenticating..." : 'Login'}</button>
               <p className='text-base'>Don't have an account?<Link to="/sign-up" className='text-teal-900 font-bold cursor-pointer ms-1'>Sign up</Link></p>
             </form>
           </div>

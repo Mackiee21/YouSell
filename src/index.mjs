@@ -66,7 +66,7 @@ app.use(express.static(path.join(__dirname, '../client/dist')))
 //     console.log("hello matawag ko?")
 //     const { session: { passport } } = req;
 //     if(!passport?.user || !req.cookies.user){
-//         return res.clearCookie("user").redirect("/login")
+//         return res.clearCookie("user").render("")
 //     }
 //     next();
 // })

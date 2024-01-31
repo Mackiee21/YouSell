@@ -29,8 +29,13 @@ function Signup() {
       resolver: zodResolver(signUpSchema)
     });
 
-    const onSubmit = (data) => {
-            console.log(data)
+    const onSubmit = async (data) => {
+          try {
+            const response = await axios.post("/api/sign-up", data)
+            console.log(response)
+          } catch (error) {
+            console.log(error)
+          }
     }
   return (
     <div className="auth-form-container">

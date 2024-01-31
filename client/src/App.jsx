@@ -5,10 +5,9 @@ import AuthLayout from "./_auth/AuthLayout";
 import Signup from "./_auth/forms/Signup";
 import Home from "./_root/Home";
 import RootLayout from "./_root/RootLayout";
-import Profile from "./_root/profile";
+import Profile from "./_root/Profile";
 
 function App() {
-  console.log("natawag diba ko")
   return (
       <Routes>
         {/*PUBLIC ROUTES */}

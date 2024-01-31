@@ -1,5 +1,7 @@
 import axios from 'axios';
+import { useState } from 'react';
 import { createContext, useEffect, useContext, useReducer } from 'react'
+import AuthLayout from '../_auth/AuthLayout';
 
 const AuthContext = createContext();
 
@@ -21,17 +23,23 @@ const authReducer = (state, action) => {
 
 async function checkStatus(){
     try {
+      document.title = "Checking Authorization..."
       const response = await axios.get('/api/auth/status');
       if(response.data?.user){
-        dispatch({type: "LOGIN", payload: response.data.user})
+        setIsAuth(true)
+        setContent(true);
+      document.title = "YouSell - Sell and Earn"
+      }else{
+        document.title = "YouSell - Login"
       }
     } catch (error) {
       console.log(error)
     }
+
 }
 
   return (
-    <AuthContext.Provider value={{ ...state, dispatch, checkStatus }}>
+    <AuthContext.Provider value={{ ...state, dispatch }}>
         { children }
     </AuthContext.Provider>
   )

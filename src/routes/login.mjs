@@ -1,4 +1,4 @@
-import router, { response } from 'express';
+import router from 'express';
 import passport from 'passport';
 
 const loginRouter = router();

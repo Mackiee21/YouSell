@@ -1,12 +1,10 @@
-import router, { response } from "express";
+import router from "express";
 
 const signupRouter = router();
 
-signupRouter.get('/api/sign-up/verify-username/:username', (req, res) => {
-    const { username } = req.params;
-    if(username === "markpandac02@gmail.com"){
-        return res.json({status: "taken"})
-    }
+signupRouter.post('/api/sign-up', (req, res) => {
+    const { body } = req;
+    console.log(body)
     return res.status(200).json({status: "ok"})
 })
 

@@ -58,25 +58,24 @@ app.get("/", (req, res) => {
 
 app.use(express.static(path.join(__dirname, '../client/dist')))
 
-//if session expired
-// nakalimot ka sa imong buhatonon mak, pero do soemthing here mak
-// na mag authenticate sa user 
-//APPLY THIS MAK TO ONLY PROCTECTED ROUTES
-// app.use((req, res, next) => {
-//     console.log("hello matawag ko?")
-//     const { session: { passport } } = req;
-//     if(!passport?.user || !req.cookies.user){
-//         return res.clearCookie("user").render("")
-//     }
-//     next();
-// })
-
-
 app.use(loginRouter);
 app.use(signupRouter)
 
+
+
+
 //app.use(validateUser); //applicable to other routes only not on loginRoute
-app.get('/api/auth/status', (req, res) => {
+app.get('/api/auth/status',(req, res, next) => {
+    console.log("hello matawag ko?")
+    const { session: { passport } } = req;
+    if(!passport?.user || !req.cookies.user){
+        console.log("tama na bakla")
+         res.clearCookie("user").status(401).json({message: "Session Expired. Log in again"})
+    }else{
+        next();
+    }
+    
+}, (req, res) => {
     //if passed the middleware meaning the user is already logged in
     if(!req.user){
         return res.json({status: "Unauthorized"});
@@ -84,18 +83,17 @@ app.get('/api/auth/status', (req, res) => {
     return res.json({user: req.user});
 })
 
-app.get("*", (_, res) => {
-    console.log("hello?")
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-})
 
 // //CAT ALL NOT FOUND ROUTES Redirect to NOT FOUND PAGE
 // app.use((req, res, next) => {
 //     res.status(404).sendFile(path.join(__dirname, 'NotFound.html'));
 // })
+app.get("*", (_, res) => {
+    console.log("hello?")
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+})
+
 const PORT = process.env.PORT || 5000;
-
-
 
 app.listen(PORT, () => {
     console.log(`Listening to port ${PORT}`);

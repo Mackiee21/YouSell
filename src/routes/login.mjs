@@ -11,10 +11,6 @@ loginRouter.post('/api/login', (req, res, next) => {
             console.log("Error", err);
             return res.status(400).json({ error: err });
         }
-        if (!user) {
-            // If authentication failed (user is not found or password is incorrect), respond accordingly
-            return res.status(400).json({ error: "Invalid credentials" });
-        }
         // Authentication successful, call req.login() to establish a login session
         req.login(user, (err) => {
             if (err) {

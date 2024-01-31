@@ -1,6 +1,7 @@
-import passport from 'passport';
+import passport from 'passport'
 import { Strategy } from 'passport-local'
-import { User } from '../Schemas/UserSchema.mjs';
+import { User } from '../Schemas/UserSchema.mjs'
+import bcrypt from 'bcrypt'
 
 passport.serializeUser((user, done) => {
     done(null, user._id);
@@ -25,7 +26,7 @@ export default passport.use(new Strategy(async (username, password, done) => {
     try {
        const user = await User.findOne({ username });
        if(!user) throw new Error("Incorrect email or password")
-       if(user.password !== password){
+       if(await bcrypt.compare(user.password, password)){
         throw new Error("Incorrect email or password")
         //OR DO LIKE THIS done(null, false, {message: "Invalid Password"})
        }

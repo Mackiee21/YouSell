@@ -15,7 +15,7 @@ axios.interceptors.response.use((response) => response, (error) => {
     window.location.href = "/login"
   }
   else if(error.response.status === 500){
-    alert("Internal Server error, Try again")
+    alert(error.response.data.message)
   }
   return Promise.reject(error) //this one's working mak ha
 })

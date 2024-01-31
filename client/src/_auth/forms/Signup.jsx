@@ -1,9 +1,10 @@
 import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 function Signup() {
+  const navigate = useNavigate();
       const signUpSchema = z.object({
             name: z.string().min(1, {message: "This field is required"}),
             username: z.string().min(1, {message: "This field is required"})
@@ -14,7 +15,7 @@ function Signup() {
                       if(status === 'taken'){
                         ctx.addIssue({
                           code: z.ZodIssueCode.custom,
-                          message: "This username is taken"
+                          message: "This username is already taken"
                         })
                       }
                       return true
@@ -32,7 +33,10 @@ function Signup() {
     const onSubmit = async (data) => {
           try {
             const response = await axios.post("/api/sign-up", data)
-            console.log(response)
+            if(response.status === 201){
+              alert("Created Successfully")
+              navigate("/")
+            }
           } catch (error) {
             console.log(error)
           }

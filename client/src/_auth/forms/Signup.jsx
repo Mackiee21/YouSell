@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { useUserContext } from '../../context/AuthContext';
 function Signup() {
   const navigate = useNavigate();
+  const { dispatch } = useUserContext();
       const signUpSchema = z.object({
             name: z.string().min(1, {message: "This field is required"}),
             username: z.string().min(1, {message: "This field is required"})
@@ -35,6 +37,7 @@ function Signup() {
             const response = await axios.post("/api/sign-up", data)
             if(response.status === 201){
               alert("Created Successfully")
+              dispatch({type: "LOGIN", payload: response.data.user})
               navigate("/")
             }
           } catch (error) {

@@ -6,7 +6,6 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom';
 const el = document.getElementById("root");
 import AuthProvider from './context/AuthContext'
-import { response } from 'express';
 
 const root = ReactDOM.createRoot(el);
 

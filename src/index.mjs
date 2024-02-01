@@ -56,19 +56,19 @@ app.get("/", (req, res) => {
 })
 //IF USER TRIES TO ACCESS  THESE ROUTES and THEY'RE LOGGED IN, REDIRECT
 //COULD DO THIS CLIENT SIDE THOUGH HAHAHAHAH PERO BATIG EFFECT MAN HAHAHAAHAH
-app.get("/login", (req, res) => {
-    if(req.user){
-        return res.status(401).redirect("/")
-    }
-    return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-})
+// app.get("/login", (req, res) => {
+//     if(req.user){
+//         return res.status(401).redirect("/")
+//     }
+//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+// })
 
-app.get("/sign-up", (req, res) => {
-    if(req.user){
-        return res.status(401).redirect("/")
-    }
-    return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-})
+// app.get("/sign-up", (req, res) => {
+//     if(req.user){
+//         return res.status(401).redirect("/")
+//     }
+//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+// })
 
 
 //IF YOU WANT TO USE THE SERVER TO SERVER TO DO SOME ACTION BASED ON SOME ROUTES, DEFINE

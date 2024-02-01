@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useState, useRef } from "react"
 import { Link } from "react-router-dom";
-import Fieldset from "../utils/Fieldset";
+import Fieldset from "../../utils/Fieldset";
 
 function Signup() {
   const [isAStudent, setIsAStudent] = useState(false);

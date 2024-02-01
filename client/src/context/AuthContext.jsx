@@ -1,7 +1,5 @@
-import axios from 'axios';
-import { useState } from 'react';
 import { createContext, useEffect, useContext, useReducer } from 'react'
-import AuthLayout from '../_auth/AuthLayout';
+import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -17,29 +15,42 @@ const authReducer = (state, action) => {
   }
 }
  function AuthProvider({ children }) {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(authReducer, {
-    user: document.cookie ? document.cookie.split("=")[0] : null
+    user:  null
   })
 
-async function checkStatus(){
-    try {
-      document.title = "Checking Authorization..."
-      const response = await axios.get('/api/auth/status');
-      if(response.data?.user){
-        setIsAuth(true)
-        setContent(true);
-      document.title = "YouSell - Sell and Earn"
-      }else{
-        document.title = "YouSell - Login"
+  const LOGIN = (payload) => {
+    dispatch({type: "LOGIN", payload})
+  }
+
+  const LOGOUT = () => {
+    dispatch({type: "LOGOUT"})
+  }
+  console.log("Rendered?", state.user)
+  
+  useEffect(() => {
+    const getCookie = () => {
+      if(document.cookie){
+        const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)user\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        const decodedCookie = decodeURIComponent(cookieValue)
+        const cleanedString = decodedCookie.replace(/^j:/, ''); // Remove 'j:' from the beginning
+    
+        const cookieObj = JSON.parse(cleanedString);
+    
+        return cookieObj
       }
-    } catch (error) {
-      console.log(error)
     }
+    const userCookie = getCookie();
+      if(!state.user && userCookie){
+        LOGIN(userCookie)
+        navigate("/")
+      }
+  }, [])
 
-}
-
+  //TAKE THE USER STORED IN COOKIE
   return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
+    <AuthContext.Provider value={{ ...state, LOGIN, LOGOUT }}>
         { children }
     </AuthContext.Provider>
   )

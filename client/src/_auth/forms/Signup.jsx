@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useUserContext } from '../../context/AuthContext';
 function Signup() {
   const navigate = useNavigate();
-  const { dispatch } = useUserContext();
+  const { LOGIN } = useUserContext();
       const signUpSchema = z.object({
             name: z.string().min(1, {message: "This field is required"}),
             username: z.string().min(1, {message: "This field is required"})
@@ -37,7 +37,7 @@ function Signup() {
             const response = await axios.post("/api/sign-up", data)
             if(response.status === 201){
               alert("Created Successfully")
-              dispatch({type: "LOGIN", payload: response.data.user})
+              LOGIN(response.data.user)
               navigate("/")
             }
           } catch (error) {

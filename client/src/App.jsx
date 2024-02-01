@@ -1,11 +1,13 @@
 import Login from "./_auth/forms/Login";
 import { Routes, Route} from 'react-router-dom';
-import NotFound from "./components/NotFound";
+import NotFound from "./_root/components/NotFound";
 import AuthLayout from "./_auth/AuthLayout";
 import Signup from "./_auth/forms/Signup";
 import Home from "./_root/Home";
 import RootLayout from "./_root/RootLayout";
 import Profile from "./_root/Profile";
+import { useUserContext } from "./context/AuthContext";
+
 
 function App() {
   return (

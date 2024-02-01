@@ -23,10 +23,12 @@ passport.deserializeUser(async (_id, done) => { //PURPOSE ANI NIYA IS E CHECK NI
 })
 
 export default passport.use(new Strategy(async (username, password, done) => {
+    console.log("Password: ", password);
     try {
        const user = await User.findOne({ username });
        if(!user) throw new Error("Incorrect email or password")
-       if(await bcrypt.compare(user.password, password)){
+       console.log(user.password)
+       if(!await bcrypt.compare(password, user.password)){
         throw new Error("Incorrect email or password")
         //OR DO LIKE THIS done(null, false, {message: "Invalid Password"})
        }

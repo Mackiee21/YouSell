@@ -47,13 +47,13 @@ app.use(passport.session());
 
 
 
-app.get("/", (req, res) => {
-    if(!req.user || !req.cookies.user){
-        return res.clearCookie("user").status(401).redirect("/login")
-    }
-    return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+// app.get("/", (req, res) => {
+//     if(!req.user || !req.cookies.user){
+//         return res.clearCookie("user").status(401).redirect("/login")
+//     }
+//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
     
-})
+// })
 //IF USER TRIES TO ACCESS  THESE ROUTES and THEY'RE LOGGED IN, REDIRECT
 //COULD DO THIS CLIENT SIDE THOUGH HAHAHAHAH PERO BATIG EFFECT MAN HAHAHAAHAH
 // app.get("/login", (req, res) => {
@@ -100,17 +100,15 @@ app.get("/api/logout", (req, res) => {
 //ACTUAL API's HERE FROM AXIOS NA JD HAHHAHAHH
 app.get("/api/user", (req, res) => {
     if(req.user){
-        return res.status(200).json({user: req.user});
+        return res.status(200).json({user: {username: req.user.username, name: req.user.name}});
     }
     return res.clearCookie("user").status(401).json({message: "Session Expired. You have been logged out!"})
 })
 
 //app.use(validateUser); //applicable to other routes only not on loginRoute
 app.get('/api/auth/status',(req, res, next) => {
-    console.log("hello matawag ko?")
     const { session: { passport } } = req;
     if(!passport?.user || !req.cookies.user){
-        console.log("tama na bakla")
          res.clearCookie("user").status(401).json({message: "Session Expired. Log in again"})
     }else{
         next();

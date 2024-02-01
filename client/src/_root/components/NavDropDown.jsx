@@ -1,9 +1,9 @@
-import { useUserContext } from "../context/AuthContext"
+import { useUserContext } from "../../context/AuthContext"
 import { Link } from 'react-router-dom'
 import { PlusIcon } from 'lucide-react'
 
 
-function NavDropDown() {
+function NavDropDown({ setShowDrop }) {
     const { user } = useUserContext();
   return (
     <div className="border-[1.5px] border-teal-600 bg-teal-600 p-4 rounded whitespace-nowrap">
@@ -12,7 +12,7 @@ function NavDropDown() {
             <div className="w-10 h-10 rounded-full overflow-hidden relative border-2 border-white">
                 <img src="https://tse2.mm.bing.net/th?id=OIP.8JupcLPN_V7YSuIiPM58KwHaFK&pid=Api&P=0" className="object-center absolute top-0 left-0 object-cover w-full h-full" alt="user profile" />
             </div>
-            <Link to="/profile" className="cursor-pointer">
+            <Link to="/profile" onClick={() => setShowDrop(false) } className="cursor-pointer">
                 <h1 className="font-black">{user.name}</h1>
                 <p className="text-[12px] font-normal">{user.username}</p>
             </Link>

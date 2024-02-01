@@ -28,6 +28,7 @@ mongoose.connect("mongodb+srv://mackiee21:hmWDj54mM657g7wa@cluster0.imwqxua.mong
 //middlewares
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../client/dist')))
 app.use(cookieParser())
 app.use(session({
     secret: "my-secret-is-not-yours",
@@ -43,38 +44,6 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-
-// app.get("/", (req, res) => {
-//     if(!req.user || !req.cookies.user){
-//         return res.clearCookie("user").status(401).redirect("/login")
-//     }
-//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-    
-// })
-//IF USER TRIES TO ACCESS  THESE ROUTES and THEY'RE LOGGED IN, REDIRECT
-//COULD DO THIS CLIENT SIDE THOUGH HAHAHAHAH PERO BATIG EFFECT MAN HAHAHAAHAH
-// app.get("/login", (req, res) => {
-//     if(req.user){
-//         return res.status(401).redirect("/")
-//     }
-//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-// })
-
-// app.get("/sign-up", (req, res) => {
-//     if(req.user){
-//         return res.status(401).redirect("/")
-//     }
-//     return res.sendFile(path.join(__dirname, '../client/dist/index.html'))
-// })
-
-
-//IF YOU WANT TO USE THE SERVER TO SERVER TO DO SOME ACTION BASED ON SOME ROUTES, DEFINE
-//IT BEFORE YOU USE EXPRESS.STATIC MIDDLEWARE SO THAT REACT-ROUTER-DOM WOULD NOT INTERFERE
-
-app.use(express.static(path.join(__dirname, '../client/dist')))
 
 app.use(loginRouter);
 app.use(signupRouter)

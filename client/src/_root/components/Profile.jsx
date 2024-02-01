@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect } from "react"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 function Profile() {
   useEffect(() => {
@@ -13,7 +13,7 @@ function Profile() {
      }
       
     }
-    makeAGet()
+    
   }, [])
 
   return (

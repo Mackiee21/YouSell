@@ -1,12 +1,12 @@
-import Login from "./_auth/forms/Login";
-import { Routes, Route} from 'react-router-dom';
-import NotFound from "./_root/components/NotFound";
-import AuthLayout from "./_auth/AuthLayout";
-import Signup from "./_auth/forms/Signup";
-import Home from "./_root/Home";
-import RootLayout from "./_root/RootLayout";
-import Profile from "./_root/Profile";
-import { useUserContext } from "./context/AuthContext";
+import Login from "./_auth/forms/Login"
+import { Routes, Route} from 'react-router-dom'
+import AuthLayout from "./_auth/AuthLayout"
+import Signup from "./_auth/forms/Signup"
+import RootLayout from "./_root/RootLayout"
+import Index from './_root/index'
+import Profile from './_root/components/Profile'
+import NotFound from './utils/NotFound'
+import Home from "./_root/components/Home"
 
 
 function App() {
@@ -19,10 +19,12 @@ function App() {
         </Route>
         {/*PRIVATE ROUTES */}
           <Route element={<RootLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/" element={<Index />}>
+              <Route index element={<Home />} />
+              <Route path="profile" element={<Profile />} />
+            </Route>
           </Route>
-        <Route path="*"  element={<NotFound />}/>
+        <Route path="*" element={<NotFound />} />
       </Routes>
   )
 }

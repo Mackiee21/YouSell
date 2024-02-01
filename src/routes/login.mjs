@@ -9,7 +9,7 @@ loginRouter.post('/api/login', (req, res, next) => {
         //THEN YOU NEED TO USE HERE BELOW THE err.message
         if (err) {
             console.log("Error", err);
-            return res.status(400).json({ message: err });
+            return res.status(400).json({ errror: err });
         }
         // Authentication successful, call req.login() to establish a login session
         req.login(user, (err) => {

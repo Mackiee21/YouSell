@@ -32,7 +32,7 @@ function NavBar() {
           setShowDrop(false)
     }
     if(navRef.current){
-      window.addEventListener("click", checkIsChild)
+      document.addEventListener("click", checkIsChild)
     }
     return () => {
       window.removeEventListener("click", checkIsChild)

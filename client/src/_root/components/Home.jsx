@@ -19,16 +19,16 @@ const handleNext = () => {
 useEffect(() => {
   const interval =  setInterval(() => {
     handleNext();
-   }, 2200)
+   }, 3000)
    return () => clearInterval(interval);
  }, [currentImage])
   return (
     <div className="h-screen">
       <div id="HERO" className="h-4/5 grid grid-cols-12 grid-rows-12 gap-3">
           <div className="col-span-9 row-span-12">
-            <img className="w-full h-full object-cover object-center" src={Images[currentImage]} alt='hero-main' />
+            <img className="w-full h-full object-contain object-center" src={Images[currentImage]} alt='hero-main' />
           </div>
-          <div className="col-span-3 row-span-12 grid grid-cols-1 bg-orange-50 grid-rows-12">
+          <div className="col-span-3 row-span-12 grid grid-cols-1 bg-orange-50 grid-rows-12 gap-3">
             <div className="row-span-6">
               <img src={currentImage === 2 ? Images[0]: Images[currentImage + 1]} className="w-full h-full object-cover object-top"   alt="hero-1" />
             </div>

@@ -11,6 +11,7 @@ function index() {
         const getUser = async () => {
             try {
               const { data: { user } } = await axios.get("/api/user");
+              console.log(user)
               //this is just so when user comesback to our page, (already authenticated)
               //we just have to make a request to get their details
               if(user) LOGIN(user)

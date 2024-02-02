@@ -1,14 +1,13 @@
 import axios from "axios"
-import { useEffect } from "react"
+import { useEffect, forwardRef } from "react"
 import { useState, useRef } from "react"
-import { PlusIcon } from 'lucide-react'
+import { ShoppingCartIcon, Settings, ChevronDownIcon } from 'lucide-react'
 import { Link } from "react-router-dom"
 import { useUserContext } from "../../context/AuthContext"
 import NavDropDown from "./NavDropDown"
 
 
-function NavBar() {
-  const { user }  = useUserContext();
+function NavBar(_, ref) {
   const [showDrop, setShowDrop] = useState(false);
   const navRef = useRef(null);
 
@@ -29,16 +28,20 @@ function NavBar() {
   }, [])
 
   return (
-    <div className="sticky top-0 py-2.5 px-16 bg-teal-600 text-white flex items-center justify-between z-[1000]">
+    <div ref={ref} className="sticky uppercase font-sans font-medium top-0 py-2.5 px-16 bg-teal-600 text-white flex items-center justify-between z-[1000]">
       <Link to="/"><h1 className="logo text-xl tracking-widest font-bold text-white">YouSell</h1></Link>
-      <div ref={navRef} className="flex items-center gap-5 select-none">
-          <div className="flex items-center gap-2 relative">
-            <div onClick={() => setShowDrop(!showDrop)} className="cursor-pointer hover:bg-white hover:text-teal-600 transition-all duration-200 rounded-full p-0.5">
-              <PlusIcon size={20} />
+      <div ref={navRef} className="flex items-center gap-10 select-none">
+          <div onClick={() => alert("cart to be shown")} className="flex items-center gap-1.5 text-sm cursor-pointer">
+              <ShoppingCartIcon size={18} />
+            <p>My Cart</p>
+          </div>
+          <div className="flex items-center gap-1 relative">
+            <div title="Go on" onClick={() => setShowDrop(!showDrop)} className="cursor-pointer hover:bg-white hover:text-teal-600 transition-all duration-200 rounded-full p-0.5">
+              <ChevronDownIcon size={20} />
             </div>
-            <p className="font-medium">Hi, {user.name} </p>
+            <p className="text-sm">Account </p>
             {showDrop && 
-            <div className="absolute top-[100%] mt-3.5 -left-[100%]">
+            <div className="absolute top-[100%] mt-3.5 right-0">
                 <NavDropDown setShowDrop={setShowDrop} /> 
             </div>}
           </div>
@@ -47,4 +50,4 @@ function NavBar() {
   )
 }
 
-export default NavBar
+export default forwardRef(NavBar)

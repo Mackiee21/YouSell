@@ -4,12 +4,13 @@ import { Schema } from 'mongoose'
 const userSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required: true,
     },
     username: {
         type: String,
         required: true,
         unique: true,
+        index: true
     },
     password: {
         type: String,

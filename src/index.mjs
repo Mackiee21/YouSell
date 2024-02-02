@@ -11,6 +11,7 @@ import './strategies/localStrategy.js';
 import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import MongoStore from "connect-mongo";
+import productRouter from "./routes/product.mjs";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -45,8 +46,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(loginRouter);
+app.use(loginRouter)
 app.use(signupRouter)
+app.use(productRouter)
 
 
 //LOGOUT USER

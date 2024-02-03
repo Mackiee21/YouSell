@@ -30,7 +30,7 @@ useEffect(() => {
       { isLoading ? <ProductViewSkeleton />  : (
         <div id="top-portion" className="flex h-[400px]">
             <div id="img" className="flex-1 h-full relative select-none">
-                <img src={productDetails?.imageUrl} className="aspect-[4/5] rounded-sm" alt="product" />
+                <img src={productDetails?.imageUrl} className="w-full h-full object-cover object-center rounded-sm" alt="product" />
                 <ChevronLeftIcon onClick={() => navigate(-1)} size={50} color={"rgb(13,148,136)"} 
                 className="absolute top-1/2 -translate-y-1/2 cursor-pointer -left-14" />
             </div>

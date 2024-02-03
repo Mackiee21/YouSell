@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import Loader from '../../utils/Loader'
+import Skeleton from '../../utils/Skeleton';
 function Homepage() {
 
   //query all the products in the db
   const [isLoading, setIsLoading] = useState(true);
-  const [allProducts, setAllProducts] = useState({});
+  const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
       const getAllProducts = async () => {
           try {
@@ -33,32 +34,26 @@ function Homepage() {
       </section> {/*HERO*/}
       {/* DISPLAY ALL THE BOOKS FOR SALE HERE... */}
       {/**MAKE THIS A LINK MAK */}
-      {isLoading ? 
-          <div className='flex items-center justify-center gap-2 text-sm font-semibold w-full py-2'>
-            <p>Loading...</p>
-          <Loader color={"black"} />
-          </div>
-          :
-      <section className="grid grid-cols-5 gap-7">
-        {allProducts.map(product => {
-            return (
-              <Link key={product._id} to="/profile" className="rounded-sm shadow-md shadow-zinc-300 cursor-pointer">
-                <div className="overflow-hidden">
-                  <img src={product.imageUrl} 
-                    className="aspect-square object-cover object-center rounded-t-sm hover:scale-110 transition-all duration-150" alt="cat"  />
+      {isLoading && <Skeleton howMany={10} /> }
+      <section className={`grid grid-cols-5 gap-7 transition-all duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100' }`}>
+        { allProducts?.map(product => {
+          return (
+            <Link key={product._id} to="/profile" className={`rounded-sm shadow-md shadow-zinc-300 cursor-pointer`}>
+              <div className="overflow-hidden">
+                <img src={product.imageUrl} 
+                  className="aspect-square object-cover object-center rounded-t-sm hover:scale-110 transition-all duration-150" alt="cat"  />
+              </div>
+              <div className="p-2">
+                <p className="font-medium text-zinc-800 text-md tracking-wide line-clamp-2">{product.description}</p>
+                <div className="flex items-center justify-between mt-2.5">
+                  <h5 className="font-semibold text-teal-600">&#8369;{product.price} </h5>
+                  <p className="text-zinc-500 text-sm font-medium">{product.totalSold} sold</p>
                 </div>
-                <div className="p-2">
-                  <p className="font-medium text-zinc-800 text-md tracking-wide line-clamp-2">{product.description}</p>
-                  <div className="flex items-center justify-between mt-2.5">
-                    <h5 className="font-semibold text-teal-600">&#8369;{product.price} </h5>
-                    <p className="text-zinc-500 text-sm font-medium">{product.totalSold} sold</p>
-                  </div>
-                </div>
-              </Link>
-            )
-          })}
+              </div>
+            </Link>
+          )
+        }) }
         </section>
-        }
     </main>
   )
 }

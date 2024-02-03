@@ -7,7 +7,7 @@ import { useUserContext } from "../../context/AuthContext"
 import NavDropDown from "./NavDropDown"
 
 
-function NavBar(_, ref) {
+function NavBar() {
   const [showDrop, setShowDrop] = useState(false);
   const navRef = useRef(null);
 
@@ -28,7 +28,7 @@ function NavBar(_, ref) {
   }, [])
 
   return (
-    <div ref={ref} className="sticky uppercase font-sans font-medium top-0 py-2.5 px-16 bg-teal-600 text-white flex items-center justify-between z-[1000]">
+    <div className="sticky uppercase font-sans font-medium top-0 py-2.5 px-16 bg-teal-600 text-white flex items-center justify-between z-[1000]">
       <Link to="/"><h1 className="logo text-xl tracking-widest font-bold text-white">YouSell</h1></Link>
       <div ref={navRef} className="flex items-center gap-10 select-none">
           <div onClick={() => alert("cart to be shown")} className="flex items-center gap-1.5 text-sm cursor-pointer">

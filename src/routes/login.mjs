@@ -18,7 +18,7 @@ loginRouter.post('/api/login', (req, res, next) => {
                 return res.status(500).json({ message: "Internal server error, Try again!" });
             }
             // Once login session is established, set the user cookie and respond to the client
-            return res.status(200).cookie("user", JSON.stringify({name: user.name})).json({ redirectTo: "/", user: user });
+            return res.status(200).cookie("user", JSON.stringify({name: user.name}), {maxAge: 2629568000}).json({ redirectTo: "/", user: user });
         });
     })(req, res, next); // Invoke passport.authenticate() as middleware
 });

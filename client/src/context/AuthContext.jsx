@@ -1,5 +1,4 @@
 import { createContext, useEffect, useContext, useReducer } from 'react'
-import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -9,6 +8,8 @@ const authReducer = (state, action) => {
       return { user: action.payload }
     case "LOGOUT":
       return { user: null }
+    case "ADD_PROD": 
+      return {...state, products: action.payload}
 
     default: return state
   }
@@ -27,7 +28,8 @@ const authReducer = (state, action) => {
   }
 
   const [state, dispatch] = useReducer(authReducer, {
-    user:  getCookie()
+    user:  getCookie(),
+    products: null
   })
 
   const LOGIN = (payload) => {
@@ -38,10 +40,13 @@ const authReducer = (state, action) => {
     dispatch({type: "LOGOUT"})
   }
   
+  const ADD_PROD = (payload)  => {
+    dispatch({type: "ADD_PROD", payload})
+  }
 
   //TAKE THE USER STORED IN COOKIE
   return (
-    <AuthContext.Provider value={{ ...state, LOGIN, LOGOUT }}>
+    <AuthContext.Provider value={{ ...state, LOGIN, LOGOUT, ADD_PROD }}>
         { children }
     </AuthContext.Provider>
   )

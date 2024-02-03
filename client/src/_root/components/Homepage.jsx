@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
-import Loader from '../../utils/Loader'
 import Skeleton from '../../utils/Skeleton';
+import { useUserContext } from '../.././context/AuthContext'
 function Homepage() {
 
   //query all the products in the db
-  const [isLoading, setIsLoading] = useState(true);
-  const [allProducts, setAllProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const { products, ADD_PROD } = useUserContext();
   useEffect(() => {
       const getAllProducts = async () => {
           try {
+            setIsLoading(true)
             const { data: { products }} = await axios.get("/api/get-products");
             if(products){
-              setAllProducts(products);
+              ADD_PROD(products);
             }
           } catch (error) {
             console.log(error)
@@ -21,7 +22,7 @@ function Homepage() {
             setIsLoading(false);
           }
       }
-      getAllProducts();
+      if(!products) getAllProducts();
   }, [])
   return (
     <main className="flex flex-col gap-10">
@@ -36,9 +37,9 @@ function Homepage() {
       {/**MAKE THIS A LINK MAK */}
       {isLoading && <Skeleton howMany={10} /> }
       <section className={`grid grid-cols-5 gap-7 transition-all duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100' }`}>
-        { allProducts?.map(product => {
+        { products?.map(product => {
           return (
-            <Link key={product._id} to="/profile" className={`rounded-sm shadow-md shadow-zinc-300 cursor-pointer`}>
+            <Link key={product._id} to="/profile" className={`rounded-sm shadow-lg shadow-zinc-300 cursor-pointer`}>
               <div className="overflow-hidden">
                 <img src={product.imageUrl} 
                   className="aspect-square object-cover object-center rounded-t-sm hover:scale-110 transition-all duration-150" alt="cat"  />

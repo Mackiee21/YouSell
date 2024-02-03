@@ -27,7 +27,7 @@ function Homepage() {
       if(!products) getAllProducts();
   }, [])
   return (
-    <main className="flex flex-col gap-7 md:gap-10">
+    <main className="flex flex-col gap-5 md:gap-10">
       <section id="hero" className="flex bg-black p-2 items-center h-[330px]">
           <div className="ms-14">
             <h1 className="logo border-y-2 border-teal-600 text-zinc-800 w-fit tracking-wider font-bold font-mono text-3xl">YouSell</h1>
@@ -38,7 +38,7 @@ function Homepage() {
       {/* DISPLAY ALL THE BOOKS FOR SALE HERE... */}
       {/**MAKE THIS A LINK MAK */}
       {isLoading && <Skeleton howMany={10} /> }
-      <section className={`grid grid-cols-5 gap-5 md:gap-7 transition-all duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100' }`}>
+      <section className={`grid grid-cols-5 gap-2.5 md:gap-7 transition-all duration-1000 ${isLoading ? 'opacity-0' : 'opacity-100' }`}>
         { products?.map(product => {
           return (
             <Link key={product._id} to={`/product/${product._id}`} className={`rounded-sm shadow-lg shadow-zinc-300 cursor-pointer`}>

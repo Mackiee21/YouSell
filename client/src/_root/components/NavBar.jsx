@@ -36,7 +36,10 @@ function NavBar() {
 
       <div ref={navRef} className="flex items-center gap-7 select-none">
           <div onClick={() => alert("cart to be shown")} className="flex items-center gap-1.5 text-xs cursor-pointer">
-              <ShoppingCartIcon size={18} />
+            <div className="flex items-center">
+              <h1 className="text-sm leading-none">(0)</h1>
+              <ShoppingCartIcon size={18}/>
+            </div>
             <p>My Cart</p>
           </div>
           <div className="flex items-center gap-1 relative">

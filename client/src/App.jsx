@@ -11,6 +11,7 @@ import axios from 'axios'
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 import Homepage from "./_root/components/Homepage"
+import ProductView from "./_root/components/ProductView"
 
 
 function App() {
@@ -50,6 +51,7 @@ function App() {
             <Route path="/" element={<Index />}>
               <Route index element={<Homepage />} />
               <Route path="profile" element={<Profile />} />
+              <Route path="product/:id" element={<ProductView />} />
             </Route>
           </Route>
         <Route path="*" element={<NotFound />} />

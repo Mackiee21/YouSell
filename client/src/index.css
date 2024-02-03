@@ -51,3 +51,10 @@ body{
 .auth-form-container{
     @apply flex flex-col items-center justify-center w-[35%];
 }
+
+.btn-primary{
+    @apply bg-teal-600 rounded py-1.5 px-5 text-white shadow-sm shadow-teal-900 hover:opacity-85 duration-150;
+}
+.btn-secondary{
+    @apply bg-zinc-500 rounded py-1.5 px-5 text-white shadow-sm shadow-zinc-700  hover:opacity-85 duration-150;
+}

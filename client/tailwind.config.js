@@ -11,6 +11,9 @@ export default {
       },
       scale: {
         "102": "1.02"
+      },
+      fontFamily: {
+        "main": ['Raleway', 'sans-serif']
       }
     },
   },

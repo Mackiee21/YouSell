@@ -29,22 +29,22 @@ function NavDropDown({ setShowDrop }) {
   }
     const { user } = useUserContext();
   return (
-    <div className="border-[1.5px] border-teal-600 bg-teal-600 p-4 rounded whitespace-nowrap">
+    <div className="font-main capitalize border-[1.5px] border-teal-600 bg-teal-600 p-4 rounded whitespace-nowrap">
       <ul className="flex flex-col gap-3 tracking-wide text-white">
         <li className="flex items-center gap-2 border-b border-gray-400 pb-1">
-            <div className="w-10 h-10 rounded-full overflow-hidden relative border-2 border-white">
+            <div className="w-10 h-10 rounded-full overflow-hidden relative border-2 border-slate-200">
                 <img src="https://tse2.mm.bing.net/th?id=OIP.8JupcLPN_V7YSuIiPM58KwHaFK&pid=Api&P=0" className="object-center absolute top-0 left-0 object-cover w-full h-full" alt="user profile" />
             </div>
             <Link to="/profile" onClick={() => setShowDrop(false) } className="cursor-pointer">
-                <h1 className="font-black">{user.name}</h1>
-                <p className="text-[12px] font-normal">{user.username}</p>
+                <h1 className="font-medium ">{user.name}</h1>
+                <p className="text-xs font-normal lowercase">{user.username}</p>
             </Link>
         </li>
-        <li className="text-sm mt-2 flex items-center gap-1">
-            <PlusIcon size={19} />
+        <li className="text-sm font-normal flex items-center gap-1">
+            <PlusIcon size={18} />
             <p>Add Product</p>
         </li>
-        <li className="border-t border-gray-400">
+        <li className="border-t text-sm font-normal border-gray-400">
           <button disabled={loggingOut} className="flex items-center justify-center gap-1.5 rounded hover:opacity-85 text-sm pt-2" onClick={handleLogout}>
               <LogOut size={15} />
               <p>Logout</p>

@@ -1,15 +1,17 @@
-import { createContext, useEffect, useContext, useReducer } from 'react'
+import { createContext, useContext, useReducer } from 'react'
 
 const AuthContext = createContext();
 
 const authReducer = (state, action) => {
   switch(action.type){
     case "LOGIN":
-      return { user: action.payload }
+      return {...state, user: action.payload }
     case "LOGOUT":
-      return { user: null }
+      return {...state, user: null }
     case "ADD_PROD": 
       return {...state, products: action.payload}
+    case "ADD_TO_CART":
+      return { ...state, cart: [...state?.cart, action.payload]}
 
     default: return state
   }
@@ -29,7 +31,8 @@ const authReducer = (state, action) => {
 
   const [state, dispatch] = useReducer(authReducer, {
     user:  getCookie(),
-    products: null
+    products: null,
+    cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
   })
 
   const LOGIN = (payload) => {
@@ -44,9 +47,14 @@ const authReducer = (state, action) => {
     dispatch({type: "ADD_PROD", payload})
   }
 
+  const ADD_TO_CART = (payload) => {
+    dispatch({type: "ADD_TO_CART", payload})
+  }
+
+  console.log("Auth", state);
   //TAKE THE USER STORED IN COOKIE
   return (
-    <AuthContext.Provider value={{ ...state, LOGIN, LOGOUT, ADD_PROD }}>
+    <AuthContext.Provider value={{ ...state, LOGIN, LOGOUT, ADD_PROD, ADD_TO_CART }}>
         { children }
     </AuthContext.Provider>
   )

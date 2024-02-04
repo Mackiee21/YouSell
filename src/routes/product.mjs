@@ -24,7 +24,7 @@ productRouter.post("/api/add-product", async (req, res) => {
 productRouter.get("/api/product/:id", async (req, res) => {
     const { id } = req.params;
     const [product] = await Product.find({ _id: id });
-    if(product) return res.status(200).json({product})
+    if(product) return res.status(200).json({...product, rating: 87.5})
     return res.status(400).json({message: `No product with this ${id} id is found!`})
 })
 

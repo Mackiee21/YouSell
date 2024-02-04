@@ -9,7 +9,8 @@ const productSchema = new Schema({
     },
     description: String,
     price: Number,
-    totalSold: Number
+    totalSold: Number,
+    rating: Number
 })
 
 

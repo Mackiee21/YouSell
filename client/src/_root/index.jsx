@@ -23,11 +23,11 @@ function index() {
           getUser();
     }, [])
   return (
-      <div className="flex flex-col h-screen">
+      <div className="flex flex-col h-dvh">
         <NavBar />
         <section className="flex-1 flex overflow-hidden">
           <Sidebar />
-          <main className="flex-1 overflow-y-auto px-10 py-5">
+          <main className="flex-1 overflow-y-auto px-10 pt-5 pb-10">
             <Outlet />
             <footer className="w-full bg-teal-600 py-8 px-5 hidden text-white">
               <h2>&copy; YouSell - All rights reserved</h2>

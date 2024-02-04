@@ -23,7 +23,6 @@ function Skeleton({ howMany = 1}) {
   );
   
   
-  
-}
+      }
 
 export default Skeleton

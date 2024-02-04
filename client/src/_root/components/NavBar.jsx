@@ -70,7 +70,7 @@ function NavBar() {
             </div>
             <p className="text-xs">Account </p>
             {showDrop && 
-            <div className="absolute top-[100%] mt-[17.5px] right-0">
+            <div className="absolute top-[100%] mt-7 right-0">
                 <NavDropDown setShowDrop={setShowDrop} /> 
             </div>}
           </div>

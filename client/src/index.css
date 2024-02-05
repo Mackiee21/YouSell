@@ -53,11 +53,11 @@ body{
 }
 
 .btn-primary{
-    @apply bg-teal-600 rounded text-xs px-3 py-2 md:py-1.5 md:px-5 md:text-base text-white shadow-sm shadow-teal-900 hover:opacity-85 duration-150;
+    @apply bg-teal-600 rounded text-sm px-3 py-2 md:py-1.5 md:px-5 md:text-base text-white shadow-sm shadow-teal-900 hover:opacity-85 duration-150;
 }
 .btn-secondary{
-    @apply bg-zinc-500 rounded text-xs px-3 py-2 md:py-1.5 md:px-5 md:text-base text-white shadow-sm shadow-zinc-700  hover:opacity-85 duration-150;
+    @apply bg-zinc-500 rounded text-sm px-3 py-2 md:py-1.5 md:px-5 md:text-base text-white shadow-sm shadow-zinc-700  hover:opacity-85 duration-150;
 }
 .btn-danger{
-    @apply bg-red-800 rounded text-xs md:text-base px-3 py-2 md:py-1.5 md:px-5 text-white shadow-sm shadow-red-900 hover:opacity-85 duration-150;
+    @apply bg-red-800 rounded text-sm md:text-base px-3 py-2 md:py-1.5 md:px-5 text-white shadow-sm shadow-red-900 hover:opacity-85 duration-150;
 }

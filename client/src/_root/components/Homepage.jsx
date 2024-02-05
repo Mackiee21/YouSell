@@ -48,9 +48,9 @@ function Homepage() {
   }, [cart])
 
   return (
-    <main className="flex flex-col gap-7">
+    <main className="flex flex-col gap-3.5 md:gap-7">
       <section id="hero" className="flex rounded p-7 md:p-2 items-center md:h-[330px]">
-          <div className="ms-5 md:ms-14">
+          <div className="ms-2.5 md:ms-14">
             <h1 className="logo border-y-2 border-teal-600 text-slate-600 w-fit tracking-wider font-bold font-mono text-xl md:text-3xl">YouSell</h1>
             <h2 className="mt-2 text-sm md:text-base w-[70%] md:w-fit">Have some pre-used books? Sell with YouSell</h2>
             <button className="btn-primary mt-5">Shop now</button>

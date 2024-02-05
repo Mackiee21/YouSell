@@ -33,7 +33,7 @@ function NavDropDown({ setShowDrop }) {
       <div className="absolute right-14 w-6 h-6 rounded-sm bg-zinc-600 rotate-45 -top-2 -z-[5]"></div>
       <ul className="flex flex-col gap-3 tracking-wide">
         <li className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full overflow-hidden relative border-2 border-zinc-400">
+            <div className="w-11 h-11 rounded-full overflow-hidden relative border-2 border-zinc-400">
                 <img src="https://tse2.mm.bing.net/th?id=OIP.8JupcLPN_V7YSuIiPM58KwHaFK&pid=Api&P=0" className="object-center absolute top-0 left-0 object-cover w-full h-full" alt="user profile" />
             </div>
             <Link to="/profile" onClick={() => setShowDrop(false) } className="cursor-pointer border-b border-slate-400 pb-1.5">

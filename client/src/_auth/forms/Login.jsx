@@ -37,7 +37,7 @@ function Login() {
   return (
         <div className="auth-form-container">
           <h1 className='logo header-logo'>WELCOME BACK - Yousell</h1>
-          <h2 className='text-lg logo tracking-wide font-medium text-teal-900 my-3'>Enter you login credentials</h2>
+          <h2 className='text-base md:text-lg logo tracking-wide font-medium text-teal-900 my-3'>Enter you login credentials</h2>
           <div className="w-full grid grid-cols-1 items-center justify-center rounded border border-teal-900 md:px-0">
             <div className={`w-full bg-red-700 tracking-wide text-white text-sm font-medium text-center rounded-b-sm py-3.5 ${!incorrectCredentials && !errorMessage && 'hidden'}`}>{errorMessage}</div>
             <form onSubmit={handleSubmit(SubmitLogin)} className="flex flex-col gap-3.5 w-full p-7">

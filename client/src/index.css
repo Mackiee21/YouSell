@@ -24,7 +24,7 @@ body{
     font-family: 'Bebas Neue', sans-serif;
 }
 .header-logo{
-    @apply text-2xl font-black tracking-wider text-teal-900;
+    @apply text-xl md:text-2xl font-black tracking-wider text-teal-900;
 }
 
 .signup-form{
@@ -49,15 +49,15 @@ body{
 */
 
 .auth-form-container{
-    @apply flex flex-col items-center justify-center w-[35%];
+    @apply flex flex-col items-center justify-center w-full md:w-[35%];
 }
 
 .btn-primary{
-    @apply bg-teal-600 rounded py-1.5 px-5 text-white shadow-sm shadow-teal-900 hover:opacity-85 duration-150;
+    @apply bg-teal-600 rounded text-xs px-3 py-2 md:py-1.5 md:px-5 md:text-base text-white shadow-sm shadow-teal-900 hover:opacity-85 duration-150;
 }
 .btn-secondary{
-    @apply bg-zinc-500 rounded py-1.5 px-5 text-white shadow-sm shadow-zinc-700  hover:opacity-85 duration-150;
+    @apply bg-zinc-500 rounded text-xs px-3 py-2 md:py-1.5 md:px-5 md:text-base text-white shadow-sm shadow-zinc-700  hover:opacity-85 duration-150;
 }
 .btn-danger{
-    @apply bg-red-800 rounded py-1.5 px-5 text-white shadow-sm shadow-red-900 hover:opacity-85 duration-150;
+    @apply bg-red-800 rounded text-xs md:text-base px-3 py-2 md:py-1.5 md:px-5 text-white shadow-sm shadow-red-900 hover:opacity-85 duration-150;
 }

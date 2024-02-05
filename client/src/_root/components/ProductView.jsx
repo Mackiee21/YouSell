@@ -33,17 +33,17 @@ useEffect(() => {
     
 }, [])
   return (
-    <div className="sm:w-full md:w-[75%] 2xl:w-[80%] max-w-[1200px] py-10 relative left-1/2 -translate-x-1/2">
+    <div className="sm:w-full md:w-[75%] 2xl:w-[80%] max-w-[1200px] md:py-10 relative md:left-1/2 md:-translate-x-1/2">
     {/*CHANGE THIS INTO AN ACTUAL SKELETON */}
       { isLoading ? <ProductViewSkeleton />  : (
-        <div id="top-portion" className="flex h-[350px] gap-2 items-start">
-            <div id="img" className="flex-1 h-full relative select-none">
-                <img src={productDetails?.imageUrl} className="w-full h-full object-cover object-center rounded-lg" alt="product" />
+        <div className="flex flex-col md:flex-row md:h-[350px] gap-2 items-start">
+            <div className="w-full flex-1 flex justify-center md:h-full relative select-none">
+                <img src={productDetails?.imageUrl} className="aspect-square md:w-full md:h-full object-cover object-center rounded-lg" alt="product" />
                 <ChevronLeftIcon onClick={() => navigate(-1)} size={50} color={"rgb(13,148,136)"} 
-                className="absolute top-1/2 -translate-y-1/2 cursor-pointer -left-14" />
+                className="hidden: md:block absolute top-1/2 -translate-y-1/2 cursor-pointer -left-14" />
             </div>
-            <div id="info" className="flex-1 flex flex-col gap-5 px-4">
-                <p className="text-lg">{productDetails?.description}</p>
+            <div id="info" className="w-full flex-1 flex flex-col gap-5 px-0 md:px-4">
+                <p className="text-base md:text-lg">{productDetails?.description}</p>
                 <div className="flex flex-col gap-1">
                     <p>Price: <span className="text-teal-600 font-medium text-lg">&#8369;{soldFormatter(productDetails?.price)}</span></p>
                     <p>Sold: <span className="text-teal-600 font-medium text-lg">{soldFormatter(productDetails?.totalSold)}</span></p>
@@ -65,7 +65,11 @@ useEffect(() => {
                     </div>
                     </div>
                 </div>
-                <button disabled={isInCart} className={isInCart ? 'btn-danger' : 'btn-primary'}>{isInCart ? "Remove Item" : "Add to Cart"}</button>
+                <div className='w-full flex items-center gap-2'>
+                    <button onClick={() => navigate(-1)} className='btn-secondary flex-1 md:hidden'>Back</button>
+                    <button disabled={isInCart} className={isInCart ? 'btn-danger flex-1' : 'btn-primary flex-1'}>{isInCart ? "Remove Item" : "Add to Cart"}</button>
+                </div>
+                
             </div>
         </div>
       )}

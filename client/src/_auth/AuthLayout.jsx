@@ -8,7 +8,7 @@ function AuthLayout() {
     window.location.href = "/"
   }
   return (
-      <div id="hero" className="h-screen flex flex-col bg-fixed">
+      <div id="hero" className="min-h-dvh flex flex-col bg-fixed">
         <section className="flex-1 w-full flex items-center px-7 md:px-28 py-10">
           <Outlet />
         </section>

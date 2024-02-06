@@ -27,7 +27,7 @@ function index() {
         <NavBar />
         <section className="flex-1 flex overflow-hidden">
           <Sidebar />
-          <main className="flex-1 overflow-y-auto px-2 md:px-10 pt-5 pb-5 md:pb-10">
+          <main className="flex-1 overflow-y-auto p-2 md:px-10  md:pt-5 md:pb-10">
             <Outlet />
             <footer className="w-full bg-teal-600 py-8 px-5 hidden text-white">
               <h2>&copy; YouSell - All rights reserved</h2>

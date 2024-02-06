@@ -65,11 +65,7 @@ useEffect(() => {
                     </div>
                     </div>
                 </div>
-                <div className='w-full flex items-center gap-2'>
-                    <button onClick={() => navigate(-1)} className='btn-secondary flex-1 md:hidden'>Back</button>
-                    <button disabled={isInCart} className={isInCart ? 'btn-danger flex-1' : 'btn-primary flex-1'}>{isInCart ? "Remove Item" : "Add to Cart"}</button>
-                </div>
-                
+                <button disabled={isInCart} className={isInCart ? 'btn-danger flex-1' : 'btn-primary flex-1'}>{isInCart ? "Remove Item" : "Add to Cart"}</button>
             </div>
         </div>
       )}

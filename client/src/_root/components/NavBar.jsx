@@ -1,15 +1,17 @@
 import axios from "axios"
 import { useEffect, forwardRef } from "react"
 import { useState, useRef } from "react"
-import { ShoppingCartIcon, SearchIcon, ChevronDownIcon, UserCircle2Icon } from 'lucide-react'
+import { ShoppingCartIcon, SearchIcon, ChevronDownIcon, Menu } from 'lucide-react'
 import { Link } from "react-router-dom"
 import NavDropDown from "./NavDropDown"
 import { useUserContext } from "../../context/AuthContext"
 import { soldFormatter } from '../../utils/SoldFormatter'
+import MobileNavBar from "./MobileNavBar"
 
 
 function NavBar() {
   const [showDrop, setShowDrop] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const navRef = useRef(null);
   const { cart } = useUserContext();
 
@@ -33,12 +35,15 @@ function NavBar() {
   return (
     <div className="sticky uppercase  font-medium top-0 py-2.5 px-5 md:px-16 bg-teal-600 text-white flex items-center justify-between z-[1000]">
       <Link to="/"><h1 className="logo text-xl tracking-widest font-bold text-white">YouSell</h1></Link>
-      <form className="hidden  grow max-w-sm md:flex items-center gap-3 bg-slate-200  rounded pe-3 hover:bg-slate-300 transition-all duration-150">
+      <form className="hidden grow max-w-sm md:flex items-center gap-3 bg-slate-200  rounded pe-3 hover:bg-slate-300 transition-all duration-150">
         <input type="search" className="text-black font-normal bg-slate-200 grow focus:ring-2 focus:ring-blue-500 py-1.5 rounded-l border-none placeholder:text-gray-600 placeholder:font-normal" placeholder="Search" />
         <SearchIcon size={20} color={"black"} className="cursor-pointer" />
       </form>
-
-      <div ref={navRef} className="font-medium flex items-center gap-2.5 md:gap-5 select-none">
+      <button onClick={() => setShowMobileMenu(!showMobileMenu)} className="md:hidden">
+        <Menu size={24} />
+      </button>
+      <MobileNavBar showMobileMenu={showMobileMenu} setShowMobileMenu={setShowMobileMenu} />
+      <div ref={navRef} className="hidden font-medium md:flex items-center gap-2.5 md:gap-5 select-none">
           <div onClick={() => alert("cart to be shown")} className="relative flex items-center gap-1.5 text-xs cursor-pointer">
             <div className="flex gap-0.5 items-center">
               <h1 className="text-sm leading-none -mt-0.5">(<span className="text-base mx-0.5">{cart?.length}</span>)</h1>

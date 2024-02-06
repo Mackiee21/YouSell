@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 function NavDropDown({ setShowDrop }) {
-  const { LOGOUT } = useUserContext();
+  const { LOGOUT, user } = useUserContext();
   const navigate = useNavigate();
   const [loggingOut, setLoggingOut] =useState(false);
 
@@ -27,7 +27,6 @@ function NavDropDown({ setShowDrop }) {
       setLoggingOut(false)
     }
   }
-    const { user } = useUserContext();
   return (
     <div className="relative font-main capitalize border-[1.5px] bg-white text-zinc-700 py-5 px-6 rounded whitespace-nowrap">
       <div className="absolute right-14 w-6 h-6 rounded-sm bg-zinc-600 rotate-45 -top-2 -z-[5]"></div>

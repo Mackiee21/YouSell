@@ -2,7 +2,7 @@
 function Skeleton({ howMany = 1}) {
   const skeles = new Array(howMany).fill({key: "inamo", value: "inaka"});
   return (
-    <div className="grid grid-cols-4 xl:grid-cols-5 gap-7">
+    <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-7">
         {
           skeles.map((_, index) => {
             return (

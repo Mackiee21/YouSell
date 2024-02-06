@@ -9,7 +9,7 @@ function AuthLayout() {
   }
   return (
       <div id="hero" className="h-dvh bg-fixed">
-        <section className="flex-1 h-full w-full flex md:items-center px-7 md:px-28 py-16 md:py-10">
+        <section className="h-full flex md:items-center px-7 md:px-28 py-16 md:py-10">
           <Outlet />
         </section>
       </div>

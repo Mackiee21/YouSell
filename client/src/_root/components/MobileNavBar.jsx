@@ -2,14 +2,22 @@ import { useUserContext } from "../../context/AuthContext"
 import { Link, useNavigate } from 'react-router-dom'
 import { LogOut } from 'lucide-react'
 import Loader from "../../utils/Loader";
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import axios from "axios";
+import { useLayoutEffect } from "react";
 
 function MobileNavBar({ showMobileMenu, setShowMobileMenu }) {
     const { user, LOGOUT } = useUserContext();
     const navigate = useNavigate();
     const [loggingOut, setLoggingOut] =useState(false);
-  
+    const mobileSideRef = useRef(null);
+    const [width, setWidth] = useState(0)
+    useLayoutEffect(() => {
+       if(mobileSideRef.current){
+            const { width } = mobileSideRef.current.getBoundingClientRect();
+            setWidth(width * -1)
+       }
+    }, [])
     const handleLogout = async () => {
       try {
         setLoggingOut(true)
@@ -27,7 +35,7 @@ function MobileNavBar({ showMobileMenu, setShowMobileMenu }) {
       }
     }
   return (
-    <div style={{right: showMobileMenu ? '0.5rem' : '-50%' }} className="fixed md:hidden text-zinc-800 h-[91.5%] top-12 transition-all duration-300 py-3 px-5 rounded-sm z-[20] bg-slate-50 overflow-y-auto">
+    <div ref={mobileSideRef} style={{right: showMobileMenu ? '0.5rem' : width }} className="fixed md:hidden text-zinc-800 h-[91.5%] top-12 transition-all duration-300 py-3 px-5 rounded-sm z-[20] bg-slate-50 overflow-y-auto">
         <ul>
             <li className="flex items-center gap-2 mb-3">
                 <div className="w-9 h-9 rounded-full overflow-hidden relative border-2 border-teal-600 shadow-sm shadow-teal-600">

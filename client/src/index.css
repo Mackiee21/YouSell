@@ -61,8 +61,3 @@ body{
 .btn-danger{
     @apply bg-red-800 rounded text-sm md:text-base px-3 py-2 md:py-1.5 md:px-5 text-white shadow-sm shadow-red-900 hover:opacity-85 duration-150;
 }
-
-.layout{
-    height: 100dvh;
-    height: -webkit-fill-available;
-}
